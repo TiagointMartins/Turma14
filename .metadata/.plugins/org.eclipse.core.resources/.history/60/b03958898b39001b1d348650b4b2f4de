@@ -1,0 +1,37 @@
+package loja;
+import java.util.*;
+import java.lang.Math;
+
+public class cadLoja {
+
+	public static void main(String[] args) {
+		Scanner leia=new Scanner(System.in);
+		
+		linha(70);
+		System.out.println("\n                            Bonno Cacau");
+		System.out.println("\n                         Felicidade, em chocolate");
+		linha(70);
+	
+		System.out.println("\nO que deseja fazer");
+		System.out.println("1 - COMPRAR ");
+
+		
+		
+		
+		
+	}
+
+	public static void pula()
+	{
+		System.out.println("\n");
+	}
+	
+	public static void linha(int tamanho )
+	{
+		for (int i=0 ; i < tamanho; i ++)
+		{
+			System.out.print("-");
+		}
+	
+	}
+}

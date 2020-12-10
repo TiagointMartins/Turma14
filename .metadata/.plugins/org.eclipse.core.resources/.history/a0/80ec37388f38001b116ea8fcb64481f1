@@ -1,0 +1,16 @@
+package aula;
+
+public class oiMundo 
+{
+
+	public static void main(String[] args) 
+	{
+		System.out.println("OI MUNDO");
+		
+	 int anoNascimento=1964;
+	 
+	 
+	 System.out.println("Eu nasci em: "anoNascimento);
+	}
+
+}

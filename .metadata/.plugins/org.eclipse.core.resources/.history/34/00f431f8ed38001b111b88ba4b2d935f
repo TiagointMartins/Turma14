@@ -1,0 +1,51 @@
+package aula;
+
+import java.lang.Math;
+import java.util.Scanner;
+
+public class Exercicio7 {
+
+	public static void main(String[] args) {
+	
+	Scanner leia = new Scanner (System.in);	
+	double 	A = 0 ,X = 0,B = 0,Y = 0,D = 0,E = 0,F = 0,C = 0;
+	
+	System.out.println("Informe o valor de A: ");
+	A = leia.nextDouble();
+	
+	System.out.println("Informe o valor de B: ");
+	A = leia.nextDouble();
+	
+	System.out.println("Informe o valor de C: ");
+	A = leia.nextDouble();
+	
+	System.out.println("Informe o valor de D: ");
+	A = leia.nextDouble();
+	
+	System.out.println("Informe o valor de E: ");
+	A = leia.nextDouble();
+	
+	System.out.println("Informe o valor de F: ");
+	A = leia.nextDouble();
+	
+	System.out.println("Informe o valor de X: ");
+	A = leia.nextDouble();	
+		
+	System.out.println("Informe o valor de Y: ");
+	A = leia.nextDouble();	
+	
+	C = (A*X)+(B*Y);
+	F = (D*X)+(E*Y);
+	X=((C*E)-(B*F))/((A*E)-(B*D));
+	Y=((A*F)-(C*D))/((A*E)-(B*D));
+	
+	System.out.println("O valor de C é: "+C);
+	System.out.println("O valor de F é: "+F);
+	System.out.println("O valor de X é: "+X);
+	System.out.println("O valor de Y é: "+Y);
+	
+	
+		
+	}
+
+}

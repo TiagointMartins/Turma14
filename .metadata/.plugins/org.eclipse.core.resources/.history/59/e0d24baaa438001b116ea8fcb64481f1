@@ -1,0 +1,29 @@
+package aula;
+
+import java.util.Scanner;
+
+public class Exercício3 {
+	
+	public static void main(String[] args) 
+	{
+		//variaveis
+		
+		Scanner leia = new Scanner (System.in);
+		int tempoSegundos;
+		int horas;
+		int minutos; 
+		int segundos;
+		
+		System.out.println("Digite o tempo em segundos : ");
+		tempoSegundos = leia.nextInt();
+	
+		horas = (temposegundos / 3600)
+		System.out.println("\nHora[s]: "+horas);		
+		
+		
+		
+		
+	
+	leia.close();
+	}
+}

@@ -1,0 +1,23 @@
+package lista1;
+
+import java.util.Scanner;
+
+public class lista1Exercicio1 {
+ 
+	public static void main(String[] args) {
+		
+	int  tempoAnos,ano, mes, dia;
+	
+	Scanner leia = new Scanner(System.in);
+	System.out.print("Digite o Ano de seu Nascimento: ");
+	ano = leia.nextInt();
+	System.out.print("Digite o mÊs de seu nascimento: ");
+	mes = leia.nextInt();
+	System.out.print("Digite o dia de seu nascimento: ");
+	dia = leia.nextInt();
+	tempoAnos = (ano*365) + (mes*30)+dia;
+	
+	System.out.print("Você viveu " +tempoAnos + " dias.");
+	}
+	
+}

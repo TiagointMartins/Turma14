@@ -1,0 +1,35 @@
+package lista4;
+
+import java.util.Random;
+
+public class lista4Exercicio4 {
+
+	public static void main(String[] args) {
+		Random random = new Random();
+		
+		int somaPrincipal=0;
+		int total=0;
+		int matriz[][] = new int [3][3];
+		
+		
+		for (int linha =0; linha<3;linha++ )
+		{
+			System.out.println();
+			for (int coluna=0;coluna<3;coluna++)
+			{
+				matriz[linha][coluna]=random.nextInt(10);
+				
+				System.out.print(matriz[linha][coluna]+" ");
+				total+= matriz[linha][coluna];
+			
+				if (linha == coluna )
+				somaPrincipal +=matriz[linha][coluna];
+				
+			}
+		}
+		System.out.println("\nA soma dos vetores principais é :"+somaPrincipal);
+		
+
+	}
+
+}

@@ -1,0 +1,25 @@
+package aula;
+
+import java.util.*;
+import java.lang.Math;
+
+public class lista2Exericio4 {
+
+	public static void main(String[] args) {
+		Scanner leia = new Scanner(System.in);
+		
+		int numero;
+		
+		System.out.println("Informe um numero: ");
+		numero = leia.nextInt();
+		
+		System.out.println(((numero % 2)==0)?"Valor é par!!!":"Valor é impar!!!");
+		
+	}
+	
+	public static void linha()
+	{
+		System.out.println("-");
+	}
+
+}

@@ -1,0 +1,31 @@
+package lista1;
+
+import java.lang.Math;
+import java.util.Scanner;
+
+public class lista1Exercicio8 {
+
+	public static void main(String[] args) {
+	Scanner leia = new Scanner (System.in);	
+
+	double valorCarro, custoConsumidor, porcentagemDistribuidor, custoFabrica, imposto;
+	
+	System.out.println("Informe o valor do carro novo : R$");
+	valorCarro = leia.nextDouble();
+	
+	custoFabrica = (valorCarro*27/100);
+	System.out.println("\nO custo de fabrica de um carro novo é: "+custoFabrica);
+	
+	porcentagemDistribuidor = (custoFabrica*28/100);
+	System.out.println("\nA porcentagem do Distribuidor sobre um carro novo é: "+ porcentagemDistribuidor); 
+	
+	imposto = (custoFabrica*45/100);
+	
+	System.out.println("\nO imposto sobre o valor de um carro novo é: "+ imposto);
+	valorCarro = valorCarro - imposto;
+	System.out.printf("\nO valor sem imposto de um carro novo seria: "+ valorCarro);
+	
+	
+	}
+
+}
