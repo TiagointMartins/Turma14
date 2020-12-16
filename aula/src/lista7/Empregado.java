@@ -15,7 +15,7 @@ public class Empregado extends Pessoa
 	
 	public double calculaSalario()
 		{
-			return this.salarioBase =  salarioBase - (salarioBase * imposto) ;
+			return this.salarioBase =  (salarioBase * imposto) ;
 		}
 	
 	public Empregado(String nome) 

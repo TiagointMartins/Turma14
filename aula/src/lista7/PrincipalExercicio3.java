@@ -10,6 +10,8 @@ public class PrincipalExercicio3 {
 	String nome;
 	int imposto ;
 	
+	
+	
 	Empregado colaborador = new Empregado("Geandro");
 	System.out.print("Informe o código de setor: ");
 	codigoSetor = leia.nextInt();
