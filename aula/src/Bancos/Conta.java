@@ -1,79 +1,91 @@
 package Bancos;
 
 public abstract class Conta {
-	//ATRIBUTOS
-		private int numeroConta;
-		private double saldo;
-		private String cpf;
-		
-		
-			
-		{
-			this.numeroConta = numeroConta;
-		}
-		//*SOBRECARGA
-		public Conta(int numeroConta, String cpf)
-		{
-			this.numeroConta = numeroConta;
-			this.cpf = cpf;
-		}
-		
-		
-		//ENCAPSULAMENTO
-		public int getNumeroConta() {
-			return numeroConta;
-		}
 
-		
-		public double getSaldo() {
-			return saldo;
-		}
+	protected int numeroConta;
+	protected double saldo;
+	protected String CPF;
 
-		public String getCpf() {
-			return cpf;
-		}
+	public Conta() {
 
-		public void setCpf(String cpf) {
-			this.cpf = cpf;
-		}
-
-		
-		
-		//METODOS PROPRIOS
-		
-		public void debito(double valorDebito) 
-		{
-			if (testarSaldo(valorDebito))  
-			{
-				this.saldo = this.saldo - valorDebito;
-			} 
-			else
-			{
-				System.out.println("SALDO INDISPONIVEL");
-			}
-			
-			
-		}
-		
-		
-		
-		public void credito (double valorCredito) 
-		{
-			this.saldo = this.saldo + valorCredito;
-		}
-		
-		public boolean testarSaldo(double valor) 
-		{
-			
-			boolean teste;
-			if (valor <= this.saldo) {
-				teste = true;
-			} else {
-				teste = false;
-			}
-			
-			return teste;
-		}
-		
-		
 	}
+	
+	public double getSaldo()
+	{
+		return saldo;
+	}
+
+	public double setSaldo()
+	{
+		return saldo;
+	}
+
+	
+	public int getNumeroConta()
+	{
+		return numeroConta;
+	}
+
+	public void setNumeroConta(int numeroConta)
+	{
+		this.numeroConta = numeroConta;
+	}
+
+	public String getCPF() 
+	{
+		return CPF;
+	}
+
+	public void setCPF(String cPF)
+	{
+		CPF = cPF;
+	}
+
+	public Conta(int numeroConta) 
+	{
+		this.numeroConta = numeroConta;
+	}
+
+	public Conta(int numeroConta, String CPF) 
+	{
+		this.numeroConta = numeroConta;
+		this.CPF = CPF;
+	}
+
+	public void debito(double valorDebito)
+	{
+		if (testarSaldo(valorDebito) && valorDebito > 0)
+		{
+			this.saldo -= valorDebito;
+		} else 
+		{
+			System.out.println("Valor maior que o saldo ou negativo!");
+		}
+	}
+
+	public void credito(double valorCredito) 
+	{
+		if(valorCredito > 0) 
+		{
+		this.saldo += valorCredito;
+		}
+		else
+		{
+			System.out.println("Digite um valor maior que 0");
+		}
+	}
+	
+	public boolean testarSaldo(double valor) 
+	{
+		
+		boolean teste;
+		if (valor <= this.saldo) {
+			teste = true;
+		} else {
+			teste = false;
+		}
+		
+		return teste;
+	}
+
+}
