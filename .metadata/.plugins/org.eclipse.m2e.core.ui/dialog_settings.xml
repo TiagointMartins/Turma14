@@ -2,6 +2,10 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Acer\Desktop\blogPessoal"/>
+			<item value="C:\Users\Acer\Desktop\BlogPessoal\blogPessoal"/>
+			<item value="C:\Users\Acer\Desktop\BlogPessoal\blog"/>
+			<item value="C:\Users\Acer\Desktop\BlogPessoal\blog\blog"/>
 			<item value="C:\Users\Acer\Desktop\exemplo.gradle"/>
 			<item value="C:\Users\Acer\Desktop\exemplo.maven"/>
 			<item value="C:\Users\Acer\Desktop\hello"/>
@@ -16,6 +20,14 @@
 		</list>
 	</section>
 	<section name="org.eclipse.m2e.core.pom.overview">
+		<list key="ciManagementUrl">
+		</list>
+		<list key="ciManagementSystem">
+		</list>
+		<list key="issueManagementSystem">
+		</list>
+		<list key="issueManagementUrl">
+		</list>
 	</section>
 	<section name="org.eclipse.m2e.core.pom.dependencies">
 	</section>

@@ -3779,3 +3779,4 @@ org.apache.maven.project.ProjectBuildingException: Some problems were encountere
 2021-01-21 14:35:34,546 [Worker-302: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2021-01-21 14:35:34,546 [Worker-302: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2021-01-21 14:35:34,546 [Worker-302: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Acer\Desktop\blogPessoal\src\test\resources
+2021-01-21 15:21:44,930 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
