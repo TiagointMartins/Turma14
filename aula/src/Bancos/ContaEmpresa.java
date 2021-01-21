@@ -1,15 +1,15 @@
 package Bancos;
 
 public class ContaEmpresa extends Conta {
+	private double emprestimoEmpresa = 5000.00;
 
-	private double emprestimoEmpresa;
-	
-	public ContaEmpresa(int numeroConta,double emprestimoEmpresa)
-	{
-		super(numeroConta);
-		this.emprestimoEmpresa=emprestimoEmpresa;
-		
+	// Construtor
+	public ContaEmpresa(int numeroConta, String cpf) {
+		super(numeroConta, cpf);
 	}
+
+	// Encapsulamento
+
 	public double getEmprestimoEmpresa() {
 		return emprestimoEmpresa;
 	}
@@ -17,23 +17,15 @@ public class ContaEmpresa extends Conta {
 	public void setEmprestimoEmpresa(double emprestimoEmpresa) {
 		this.emprestimoEmpresa = emprestimoEmpresa;
 	}
-	
-	public void emprestar(double valorEmprestimo)
-	{
-		if(valorEmprestimo<=this.emprestimoEmpresa)
-		{
-			this.emprestimoEmpresa=this.emprestimoEmpresa-valorEmprestimo;
-			this.saldo=this.saldo+valorEmprestimo;
-			System.out.println("O que resta do emprestimo:"+this.emprestimoEmpresa);
-			System.out.println("O SEU SALDO ATUAL: "+this.saldo);
+
+	public void emprestar(double valorEmprestimo) {
+		if (valorEmprestimo <= this.emprestimoEmpresa) {
+			this.emprestimoEmpresa = this.emprestimoEmpresa - valorEmprestimo;
+			super.depositar(valorEmprestimo);
+			System.out.println("Valor de emprestimo disponivel:" + this.emprestimoEmpresa);
+			System.out.println("Saldo Atual: " + super.getSaldoConta());
+		} else {
+			System.out.println("ERRO.O seu limite é " + this.emprestimoEmpresa);
 		}
-		else 
-		{
-			System.out.println("OPERAÇÃO INVÁLIDA");
-		}
-		
-		
 	}
-	
-	
 }

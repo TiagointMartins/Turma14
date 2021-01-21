@@ -1,273 +1,327 @@
 package Bancos;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class BancoTeste {
+
 	public static void main(String[] args) {
-		Scanner t = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 
-		char op;// visivel em todo o programa - escopo
-		char saida;
-		int numeroConta = 0;
-		final int QTDMOVIMENTO = 2;
-		String cpfConta = " ";
-		char tipoConta = ' ';
-		int opcao;
-		char continuar;
-		// escopo global
+		List<ContaPoupanca> contapou = new ArrayList<>();
+		List<ContaCorrente> contacor = new ArrayList<>();
+		List<ContaEspecial> contaesp = new ArrayList<>();
+		List<ContaEmpresa> contaemp = new ArrayList<>();
 
-		System.out.println("BANCO G3");
+		final int MAX_MOVIMENTOS = 3;
+		int digitaConta, data, operacao, numeroConta = 0, tamanho = 50;
+		double valor, valorEmprestimo;
+		char opcao, opConta, continuaTransacao = 'S';
 
 		do {
-			System.out.println("1 - Abertura de conta: ");
-			System.out.println("2 - Acesso a uma conta existente: ");
-			System.out.println("3 - Sair: ");
-			op = t.next().charAt(0);
-
-			do {
-				if (op == '1')
-				{
-					System.out.println("Digite o seu CPF:");
-					cpfConta = t.next();
-					System.out.println("ESCOLHA UM TIPO DE CONTA");
-					System.out.println("1 - Conta Poupan�a");
-					System.out.println("2 - Conta Corrente");
-					System.out.println("3 - Conta Especial");
-					System.out.println("4 - Conta Empresa");
-					System.out.println("5 - conta Universitaria");
-					System.out.print("Digite o numero de sua op��o: ");
-					tipoConta = t.next().charAt(0);
-
-				}
-
-			} while (cpfConta.isEmpty());
-
-			if (op == '2') {
-
-				switch (tipoConta) {
-				case '1': {
-					System.out.println("CONTA POUPAN�A");
+			
+			System.out.println("|◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙|");
+			System.out.println("|                                  |");
+			System.out.println("|                                  |");
+			System.out.println("|              Banco G3            |");
+			System.out.println("|  O que podemos fazer por você ?  |");
+			System.out.println("|                HOJE              |");
+			System.out.println("|                                  |");
+			System.out.println("|◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙|");
+			linha(tamanho);
+			
+			System.out.println("\n[1] - Abertura de conta");
+			System.out.println("[2] - Acesso a uma conta existente");
+			System.out.println("[3] - Sair");
+			operacao = sc.next().charAt(0);
+			if (operacao == '1') {
+				linha(tamanho);
+				System.out.println("\n                 CONTAS DISPONÍVEIS");
+				linha(tamanho);
+				System.out.println("\n[1] - Conta Poupança");
+				System.out.println("[2] - Conta Corrente");
+				System.out.println("[3] - Conta Especial");
+				System.out.println("[4] - Conta Empresa");
+				System.out.println("[5] - conta Universitaria");
+				System.out.print("Informe a conta desejada: ");
+				opConta = sc.next().charAt(0);
+				numeroConta++;
+				sc.nextLine();
+				System.out.println("Digite o seu CPF: ");
+				String cpfConta = sc.nextLine();
+				switch (opConta) {
+				case '1':
 					System.out.println("Digite a data de aniversario da conta: ");
-					int dataAniversario = t.nextInt();
-					ContaPoupanca poupanca = new ContaPoupanca(numeroConta, cpfConta, dataAniversario);
-
-					for (int i = 0; i < QTDMOVIMENTO; i++) {
-						System.out.println("QUAL OPERA��O DESEJA FAZER? R$");
-						System.out.println("[D]-D�BITO \\ [C]-CR�DITO ");
-						opcao = t.next().toUpperCase().charAt(0);
-
-						if (opcao == 'D') {
-
-							System.out.println("INSIRA O VALOR DO D�BITO");
-							double valor = t.nextDouble();
-							poupanca.debito(valor);
-							System.out.println("Saldo Atual: " + poupanca.getSaldo());
-
-						} else if (opcao == 'C') {
-							System.out.println("INSIRA O VALOR DO CR�DITO");
-							double valor = t.nextDouble();
-							poupanca.credito(valor);
-
-							System.out.println("Saldo Atual: " + poupanca.getSaldo());
-						} else {
-							System.out.println("Insira um comando v�lido!! [D]-D�BITO \\\\ [C]-CR�DITO");
-
-						}
-
-					}
-					System.out.println("DIGITE O DIA DE HOJE!");
-					int dia = t.nextInt();
-					poupanca.comparacaoData(dia);
-
-				}
+					int dataAniversario = sc.nextInt();
+					ContaPoupanca cp = new ContaPoupanca(numeroConta, cpfConta, dataAniversario);
+					contapou.add(cp);
 					break;
-
-				case '2': {
-					System.out.println("CONTA CORRENTE");
-					ContaCorrente corrente = new ContaCorrente(numeroConta, cpfConta);
-
-					for (int i = 0; i < QTDMOVIMENTO; i++) {
-						System.out.println("QUAL OPERA��O DESEJA FAZER? R$");
-						System.out.println("[D]-D�BITO \\ [C]-CR�DITO ");
-						opcao = t.next().toUpperCase().charAt(0);
-
-						if (opcao == 'D') {
-
-							System.out.println("INSIRA O VALOR DO D�BITO");
-							double valor = t.nextDouble();
-							corrente.debito(valor);
-							System.out.println("Saldo Atual: " + corrente.getSaldo());
-
-						} else if (opcao == 'C') {
-							System.out.println("INSIRA O VALOR DO CR�DITO");
-							double valor = t.nextDouble();
-							corrente.credito(valor);
-
-							System.out.println("Saldo Atual: " + corrente.getSaldo());
-						} else {
-							System.out.println("Insira um comando v�lido!! [D]-D�BITO \\\\ [C]-CR�DITO");
-
-						}
-
-					}
-
-					corrente.talao(numeroConta);
-
-				}
+				case '2':
+					ContaCorrente dm = new ContaCorrente(numeroConta, cpfConta);
+					contacor.add(dm);
 					break;
+				case '3':
+					ContaEspecial dv = new ContaEspecial(numeroConta, cpfConta);
+					contaesp.add(dv);
+					break;
+				case '4':
+					ContaEmpresa mg = new ContaEmpresa(numeroConta, cpfConta);
+					contaemp.add(mg);
+					break;
+				case '5':
+					System.out.println("\nWIP!!");
+					break;
+				}
 
-				case '3': {
-					ContaEspecial especial = new ContaEspecial(3, 1000);
-					do {
-						for (int transacao = 0; transacao < 10; transacao++) {
-							System.out.println("Conta Especial");
-							System.out.println("Digite a op��o de transa��o");
-							System.out.println("1 - CR�DITO / D�BITO ");
-							System.out.println("2 - Saldo ");
-							System.out.println("0 - Sair");
-							opcao = t.nextInt();
-							if (opcao == 1) {
-								System.out.println("Saldo: R$ " + especial.getSaldo());
-								System.out.println("Valor do Limite: R$ " + especial.getValorLimite11());
-								System.out.println("Digite a op��o de transa��o");
-								System.out.println("1 - Cr�dito ");
-								System.out.println("2 - D�bito ");
-								System.out.println("0 - Sair");
-								opcao = t.nextInt();
-								if (opcao == 1) {
-									System.out.println("Digite o valor a ser creditado");
-									especial.devolverLimite(t.nextDouble());
-									System.out.println("Saldo: R$ " + especial.getSaldo());
-									System.out.println("Valor do Limite: R$ " + especial.getValorLimite11());
-									
-								} else if (opcao == 2) {
-									System.out.println("Digite o valor a ser debitado");
-									especial.debito(t.nextDouble());
-									System.out.println("Saldo: R$ " + especial.getSaldo());
-									System.out.println("Valor do Limite: R$ " + especial.getValorLimite11());
-									
-								} else if (opcao == 0) {
-									return;
+			} else if (operacao == '2') {
+				System.out.println("Digite o número da conta: ");
+				digitaConta = sc.nextInt();
+				while (digitaConta <= 0) {
+					System.out.println("Numero da conta incorreto. Digite o número da conta: ");
+					digitaConta = sc.nextInt();
+				}
+				if (validarConta(digitaConta, contapou, contacor, contaesp, contaemp) == 0) {
+					System.out.println("Conta não existe no G6 Bank.");
+				} else if (validarConta(digitaConta, contapou, contacor, contaesp, contaemp) == 1) {
+					for (ContaPoupanca p : contapou) {
+						if (p.getNumConta() == digitaConta) {
+							System.out.println("Digite a data de hoje: ");
+							data = sc.nextInt();
+							linha(tamanho);
+							System.out.println("\n                  Conta Poupança");
+							linha(tamanho);
+							System.out.println("\nNúmero da conta: " + p.getNumConta());
+							System.out.println("CPF: " + p.getCpfConta());
+							System.out.println("Aniversário da conta: " + p.getDataAniversarioConta());
+							linha(tamanho);
+							for (int i = 0; i < MAX_MOVIMENTOS; i++) {
+								do {
+									System.out.println("\nVocê quer [D] Depositar ou [R] Retirar?");
+									opcao = sc.next().toUpperCase().charAt(0);
+								} while (opcao != 'D' && opcao != 'R');
+								if (opcao == 'D') {
+									System.out.println("Digite o valor de depósito: R$ ");
+									valor = sc.nextDouble();
+									p.depositar(valor);
+								} else {
+									System.out.println("Digite o valor de retirada: R$ ");
+									valor = sc.nextDouble();
+									p.retirar(valor);
 								}
-							} else if (opcao == 2) {
-								System.out.println("Saldo: R$ " + especial.getSaldo());
-								System.out.println("Valor do Limite: R$ " + especial.getValorLimite11());
-							} else if (opcao == 0) {
-								System.out.println("Encerrando acesso a conta");
-								return;
+								System.out.println("Saldo total: R$" + p.getSaldoConta());
+								System.out.println("Você deseja fazer outra transação (S ou N)? ");
+								continuaTransacao = sc.next().toUpperCase().charAt(0);
+								while (continuaTransacao != 'S' && continuaTransacao != 'N') {
+									System.out.println(
+											"Resposta incorreta. Você deseja fazer outra transação (S ou N)? ");
+									continuaTransacao = sc.next().toUpperCase().charAt(0);
+								}
+								if (continuaTransacao == 'N') {
+									break;
+								}
+								if (i == MAX_MOVIMENTOS - 1) {
+									System.out.println("Você atingiu o limite diário de transações.");
+								}
 							}
+							linha(tamanho);
+							System.out.println("\n");
+							p.correcaoPoupanca(data);
+							System.out.println("Saldo total: R$ " + p.getSaldoConta());
 						}
-						System.out.println(
-								"Voc� realizou todas as poss�veis transa��es em Conta Especial, deseja continuar? (S/N)");
-						continuar = t.next().toUpperCase().charAt(0);
-					} while (continuar == 'S');
-
-				}
-					break;
-
-				case '4': {
-					ContaEmpresa empresa = new ContaEmpresa(numeroConta, 5000);
-
-					for (int i = 0; i < QTDMOVIMENTO; i++) {
-						System.out.println("QUAL OPERA��O DESEJA FAZER? R$");
-						System.out.println("[D]-D�BITO \\ [C]-CR�DITO ");
-						opcao = t.next().toUpperCase().charAt(0);
-
-						if (opcao == 'D') {
-
-							System.out.println("INSIRA O VALOR DO D�BITO");
-							double valor = t.nextDouble();
-							if (valor > empresa.getSaldo()) {
-								System.out.println("D�BITO MAIOR QUE SEU SALDO");
-								System.out.println("NECESSARIO FAZER UM EMPRESTIMO");
-								System.out.println("QUAL O VALOR??");
-								double valorEmprestimo = t.nextDouble();
-								empresa.emprestar(valorEmprestimo);
-								empresa.debito(valor);
-							} else {
-								empresa.debito(valor);
-							}
-
-							System.out.println("Saldo Atual: " + empresa.getSaldo());
-
-						} else if (opcao == 'C') {
-							System.out.println("INSIRA O VALOR DO CR�DITO");
-							double valor = t.nextDouble();
-							empresa.credito(valor);
-
-							System.out.println("Saldo Atual: " + empresa.getSaldo());
-						} else {
-							System.out.println("Insira um comando v�lido!! [D]-D�BITO \\\\ [C]-CR�DITO");
-
-						}
-
 					}
+				} else if (validarConta(digitaConta, contapou, contacor, contaesp, contaemp) == 2) {
+					for (ContaCorrente p : contacor) {
+						if (p.getNumConta() == digitaConta) {
+							linha(tamanho);
+							System.out.println("\n                  Conta Corrente");
+							linha(tamanho);
+							System.out.println("\nNúmero da conta: " + p.getNumConta());
+							System.out.println("CPF: " + p.getCpfConta());
+							linha(tamanho);
+							for (int i = 0; i < MAX_MOVIMENTOS; i++) {
+								do {
+									System.out.println("\nVocê quer [D] Depositar ou [R] Retirar?");
+									opcao = sc.next().toUpperCase().charAt(0);
+								} while (opcao != 'D' && opcao != 'R');
+								if (opcao == 'D') {
+									System.out.println("Digite o valor de depósito: R$ ");
+									valor = sc.nextDouble();
+									p.depositar(valor);
+									;
+								} else {
+									System.out.println("Digite o valor de retirada: R$ ");
+									valor = sc.nextDouble();
+									p.retirar(valor);
+								}
+								System.out.println("Saldo total: R$ " + p.getSaldoConta());
 
-					System.out.println("DESEJA FAZER UM EMPRESTIMO?");
-					double valorEmprestimo = t.nextDouble();
-					empresa.emprestar(valorEmprestimo);
-
-				}
-					break;
-
-				case '5': {
-					
-					System.out.println("WIP");
-					/*
-					ContaUniversitaria universitaria = new ContaUniversitaria(numeroConta, cpfConta, 5000, 1000);
-
-					for (int i = 0; i < QTDMOVIMENTO; i++) {
-						System.out.println("QUAL OPERA��O DESEJA FAZER? R$");
-						System.out.println("[D]-D�BITO \\ [C]-CR�DITO ");
-						opcao = t.next().toUpperCase().charAt(0);
-
-						if (opcao == 'D') {
-
-							System.out.println("INSIRA O VALOR DO D�BITO");
-							double valor = t.nextDouble();
-							if (valor > universitaria.getSaldo()) {
-								System.out.println("DESEJA FAZER UM EMPRESTIMO?");
-								double valorEmprestimo = t.nextDouble();
-								universitaria.emprestar(valorEmprestimo);
+								System.out.println("Você deseja fazer outra transação (S ou N)? ");
+								continuaTransacao = sc.next().toUpperCase().charAt(0);
+								while (continuaTransacao != 'S' && continuaTransacao != 'N') {
+									System.out.println(
+											"Resposta incorreta. Você deseja fazer outra transação (S ou N)? ");
+									continuaTransacao = sc.next().toUpperCase().charAt(0);
+								}
+								if (continuaTransacao == 'N') {
+									break;
+								}
+								if (i == MAX_MOVIMENTOS - 1) {
+									System.out.println("Você atingiu o limite diário de transações.");
+								}
 							}
-
-							universitaria.debito(valor);
-							System.out.println("Saldo Atual: " + universitaria.getSaldo());
-
-						} else if (opcao == 'C') {
-							System.out.println("INSIRA O VALOR DO CR�DITO");
-							double valor = t.nextDouble();
-							universitaria.credito(valor);
-
-							System.out.println("Saldo Atual: " + universitaria.getSaldo());
-						} else {
-							System.out.println("Insira um comando v�lido!! [D]-D�BITO \\\\ [C]-CR�DITO");
-
+							linha(tamanho);
+							System.out.println("\nSaldo total: R$ " + p.getSaldoConta());
+							p.talao(p.getTalao(), p.getQtdTalao());
 						}
-
 					}
+				} else if (validarConta(digitaConta, contapou, contacor, contaesp, contaemp) == 3) {
+					for (ContaEspecial p : contaesp) {
+						if (p.getNumConta() == digitaConta) {
+							linha(tamanho);
+							System.out.println("\n                  Conta Especial");
+							linha(tamanho);
+							System.out.println("\nNúmero da conta: " + p.getNumConta());
+							System.out.println("CPF: " + p.getCpfConta());
+							linha(tamanho);
+							for (int i = 0; i < MAX_MOVIMENTOS; i++) {
+								do {
+									System.out.println("\nVocê quer [D] Depositar ou [R] Retirar?");
+									opcao = sc.next().toUpperCase().charAt(0);
+								} while (opcao != 'D' && opcao != 'R');
+								if (opcao == 'D') {
+									System.out.println("Digite o valor de depósito: R$ ");
+									valor = sc.nextDouble();
+									p.depositar(valor);
+									;
+								} else {
+									System.out.println("Digite o valor de retirada: R$ ");
+									valor = sc.nextDouble();
+									p.retirar(valor);
 
-					System.out.println("Deseja fazer um impr�stimo?");
-					double valorEmprestimo = t.nextDouble();
-					universitaria.emprestar(valorEmprestimo);
-					*/
-				}
-					break;
+								}
+								System.out.println("Saldo total: R$ " + p.getSaldoConta());
+								System.out.println("Limite Atual: R$ " + p.getLimiteEspecial());
+								System.out.println("Você deseja fazer outra transação (S ou N)? ");
+								continuaTransacao = sc.next().toUpperCase().charAt(0);
+								while (continuaTransacao != 'S' && continuaTransacao != 'N') {
+									System.out.println(
+											"Resposta incorreta. Você deseja fazer outra transação (S ou N)? ");
+									continuaTransacao = sc.next().toUpperCase().charAt(0);
+								}
+								if (continuaTransacao == 'N') {
+									break;
+								}
+								if (i == MAX_MOVIMENTOS - 1) {
+									System.out.println("Você atingiu o limite diário de transações.");
+								}
+							}
+							linha(tamanho);
+							System.out.println("\nSaldo total: R$ " + p.getSaldoConta());
+							System.out.println("Limite Atual: R$ " + p.getLimiteEspecial());
+							p.talao(p.getTalao(), p.getQtdTalao());
+						}
+					}
+				} else if (validarConta(digitaConta, contapou, contacor, contaesp, contaemp) == 4) {
+					for (ContaEmpresa p : contaemp) {
+						if (p.getNumConta() == digitaConta) {
+							linha(tamanho);
+							System.out.println("\n                  Conta Empresa");
+							linha(tamanho);
+							System.out.println("\nNúmero da conta: " + p.getNumConta());
+							System.out.println("CPF: " + p.getCpfConta());
+							linha(tamanho);
+							for (int i = 0; i < MAX_MOVIMENTOS; i++) {
+								do {
+									System.out.println("\nVocê quer [D] Depositar ou [R] Retirar?");
+									opcao = sc.next().toUpperCase().charAt(0);
+								} while (opcao != 'D' && opcao != 'R');
+								if (opcao == 'D') {
+									System.out.println("Digite o valor de depósito: R$ ");
+									valor = sc.nextDouble();
+									p.depositar(valor);
+								} else {
+									System.out.println("Digite o valor de retirada: R$ ");
+									valor = sc.nextDouble();
+									p.retirar(valor);
+								}
+								do {
+									System.out.println("Você quer um empréstimo (S ou N)? ");
+									opcao = sc.next().toUpperCase().charAt(0);
+								} while (opcao != 'S' && opcao != 'N');
+								if (opcao == 'S') {
+									System.out.println("Digite o valor: R$ ");
+									valorEmprestimo = sc.nextDouble();
+									p.emprestar(valorEmprestimo);
+								}
+								System.out.println("Saldo total: R$ " + p.getSaldoConta());
+								System.out.println("Valor de emprestimo disponivel: R$ " + p.getEmprestimoEmpresa());
+								System.out.println("Você deseja fazer outra transação (S ou N)? ");
+								continuaTransacao = sc.next().toUpperCase().charAt(0);
+								while (continuaTransacao != 'S' && continuaTransacao != 'N') {
+									System.out.println(
+											"Resposta incorreta. Você deseja fazer outra transação (S ou N)? ");
+									continuaTransacao = sc.next().toUpperCase().charAt(0);
+								}
+								if (continuaTransacao == 'N') {
+									break;
+								}
+								if (i == MAX_MOVIMENTOS - 1) {
+									System.out.println("Você atingiu o limite diário de transações.");
+								}
+							}
+							linha(tamanho);
+							System.out.println("\nSaldo total: R$ " + p.getSaldoConta());
+							System.out.println("Valor de emprestimo disponivel: R$ " + p.getEmprestimoEmpresa());
+						}
+					}
 				}
 
-			} else if (op == '2') {
-				System.out.println("wip");
 			} else {
-
+				linha(tamanho);
+				System.out.println("\n\tObrigado por utilizar o nosso APP!");
+				linha(tamanho);
+				System.exit(0);
 			}
-			System.out.println("Continua S/N");
-			saida = t.next().toUpperCase().charAt(0);
-			if (saida == 'N') {
-				System.out.println("PROGRAMA FINALIZADO..");
+			System.out.println("Deseja continuar utilizando o APP (S ou N)? ");
+			opcao = sc.next().toUpperCase().charAt(0);
+		} while (opcao == 'S');
+		linha(tamanho);
+		System.out.println("\n\tObrigado por utilizar o nosso APP!");
+		linha(tamanho);
+	}
+
+	static void linha(int tamanho) {
+		for (int x = 0; x < tamanho; x++) {
+			System.out.print("-");
+		}
+	}
+
+	static int validarConta(int digitaConta, List<ContaPoupanca> p, List<ContaCorrente> c, List<ContaEspecial> e,
+			List<ContaEmpresa> emp) {
+		int r = 0;
+		for (ContaPoupanca i : p) {
+			if (i.getNumConta() == digitaConta) {
+				r = 1;
 				break;
 			}
-
-		} while (true);
-
+		}
+		for (ContaCorrente i : c) {
+			if (i.getNumConta() == digitaConta) {
+				r = 2;
+				break;
+			}
+		}
+		for (ContaEspecial i : e) {
+			if (i.getNumConta() == digitaConta) {
+				r = 3;
+				break;
+			}
+		}
+		for (ContaEmpresa i : emp) {
+			if (i.getNumConta() == digitaConta) {
+				r = 4;
+				break;
+			}
+		}
+		return r;
 	}
 }

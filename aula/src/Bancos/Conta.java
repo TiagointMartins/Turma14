@@ -1,90 +1,64 @@
 package Bancos;
 
 public abstract class Conta {
+	private String cpfConta;
+	private double saldoConta = 0.0;
+	private int numConta;
 
-	protected int numeroConta;
-	protected double saldo;
-	protected String CPF;
-
-	public Conta() {
-
-	}
-	
-	public double getSaldo()
-	{
-		return saldo;
+	public Conta(int numConta) {
+		super();
+		this.numConta = numConta;
 	}
 
-	public double setSaldo()
-	{
-		return saldo;
+	public Conta(int numConta, String cpfConta) {
+		super();
+		this.cpfConta = cpfConta;
+		this.numConta = numConta;
 	}
 
-	
-	public int getNumeroConta()
-	{
-		return numeroConta;
+	public String getCpfConta() {
+		return cpfConta;
 	}
 
-	public void setNumeroConta(int numeroConta)
-	{
-		this.numeroConta = numeroConta;
+	public void setCpfConta(String cpfConta) {
+		this.cpfConta = cpfConta;
 	}
 
-	public String getCPF() 
-	{
-		return CPF;
+	public double getSaldoConta() {
+		return saldoConta;
 	}
 
-	public void setCPF(String cPF)
-	{
-		CPF = cPF;
+	public int getNumConta() {
+		return numConta;
 	}
 
-	public Conta(int numeroConta) 
-	{
-		this.numeroConta = numeroConta;
+	public void setNumConta(int numConta) {
+		this.numConta = numConta;
 	}
 
-	public Conta(int numeroConta, String CPF) 
-	{
-		this.numeroConta = numeroConta;
-		this.CPF = CPF;
+	public double mostraSaldo() {
+		return this.saldoConta;
 	}
 
-	public void debito(double valorDebito)
-	{
-		if (testarSaldo(valorDebito) && valorDebito > 0)
-		{
-			this.saldo -= valorDebito;
-		} else 
-		{
-			System.out.println("Valor maior que o saldo ou negativo!");
+	public void depositar(double valor) {
+		this.saldoConta = this.saldoConta + valor;
+	}
+
+	public void retirar(double valor) {
+		if (testarSaldo(valor)) {
+			this.saldoConta = this.saldoConta - valor;
+		} else {
+			System.out.println("Saldo indisponível!");
 		}
 	}
 
-	public void credito(double valorCredito) 
-	{
-		if(valorCredito > 0) 
-		{
-		this.saldo += valorCredito;
-		}
-		else
-		{
-			System.out.println("Digite um valor maior que 0");
-		}
-	}
-	
-	public boolean testarSaldo(double valor) 
-	{
-		
+	public boolean testarSaldo(double valor) {
 		boolean teste;
-		if (valor <= this.saldo) {
+		if (valor <= this.saldoConta) {
 			teste = true;
 		} else {
 			teste = false;
 		}
-		
 		return teste;
 	}
 

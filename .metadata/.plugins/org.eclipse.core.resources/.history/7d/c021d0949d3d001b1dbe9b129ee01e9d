@@ -1,0 +1,15 @@
+package CursoemVideo;
+
+public class exemplos {
+
+	public static void main(String[] args) {
+			float nota =  (float) 7.847;
+			
+		
+		System.out.printf("Sua nota é %.2f ", nota );
+		
+		
+		
+	}
+
+}

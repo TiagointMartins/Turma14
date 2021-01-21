@@ -258,12 +258,8 @@ public class grupo3 {
 	char opcao;
 	double valor;
 	double limiteCredito = 1000;			
-	
-	
-
 				
 	do
-		
 		
 	{
 		for(int i=0; i<10;i++)
@@ -303,7 +299,6 @@ public class grupo3 {
 						}
 						}
 				
-			
 			}
 			
 			else if(opcao=='C')

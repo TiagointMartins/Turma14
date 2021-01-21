@@ -1,102 +1,54 @@
 package Bancos;
 
-	public class ContaEspecial extends ContaCorrente {
-	protected double valorLimite11;
-	protected double valorCadastroLimite;
-	
-	
+public class ContaEspecial extends ContaCorrente {
+	private double limiteEspecial = 1000.00;
+	private double limiteCadastro;
 
-	public ContaEspecial(int numeroConta, double valorCredito) {
-		super(numeroConta);
-		this.valorLimite11 = valorCredito;
-		
+	public ContaEspecial(int numeroConta, String cpfConta) {
+		super(numeroConta, cpfConta);
 	}
 
-	public double getValorLimite11() {
-		return valorLimite11;
+	public double getLimiteEspecial() {
+		return limiteEspecial;
 	}
 
-	public void setValorLimite11(double valorLimite1) 
-	{
-		this.valorLimite11 = valorLimite1;
+	public void setLimiteEspecial(double limiteEspecial) {
+		this.limiteEspecial = limiteEspecial;
 	}
-	
-	
-	public double getValorCadastroLimite() 
-	{
-		return valorCadastroLimite;
+
+	public double getLimiteCadastro() {
+		return limiteCadastro;
+	}
+
+	public void setLimiteCadastro(double limiteCadastro) {
+		this.limiteCadastro = limiteCadastro;
 	}
 
 	@Override
-	public boolean testarSaldo(double debito) 
-	{
-		
-		boolean teste;
-		if (debito <= super.getSaldo()) 
-		{
-			teste = true;	
-			
-		} 
-		else if (debito <= (this.valorLimite11 + super.getSaldo()))
-		{
-			if(debito > super.getSaldo()) 
-			{
-				System.out.println("Seu saldo é insuficiente, o valor a ser debitado será retirado do seu limite");
-				double valorCredito = debito - super.getSaldo();
-				super.credito(valorCredito);
-				this.valorLimite11 = this.valorLimite11 - valorCredito;
-				teste = true;
+	public void depositar(double valor) {
+		if (this.limiteEspecial < 1000) {
+			this.limiteEspecial += valor;
+			if (this.limiteEspecial > 1000) {
+				super.depositar(this.limiteEspecial - 1000);
+				this.limiteEspecial = 1000;
 			}
-			else {
-			
-				this.valorLimite11 -= (debito - super.getSaldo());
-				debito -= super.getSaldo();
-				teste = true;
-			}
+
+		} else {
+			super.depositar(valor);
 		}
-		else{
-			teste = false;
-		}
-		
-		return teste;
+		// this.saldoConta = this.saldoConta + valor;
 	}
-	
-	public void registraLimite(){
-		if(valorLimite11<=0){
-			 System.out.println("Valor zerado, impossivel realizar");
-		}
-		else {
-			this.valorCadastroLimite = this.valorLimite11;
+
+	@Override
+	public void retirar(double valor) {
+		if (valor > (super.getSaldoConta() + this.limiteEspecial)) {
+			System.out.println("Operação cancelada. Saldo e limite de crédito insuficientes.");
+		} else if (valor < super.getSaldoConta()) {
+			super.retirar(valor);
+		} else {
+			this.limiteEspecial = this.limiteEspecial - (valor - super.getSaldoConta());
+			super.retirar(super.getSaldoConta());
 		}
 	}
-	
-	
-	public void devolverLimite(double valorCredito)
-	{
-		if (this.valorCadastroLimite != this.valorLimite11) 
-		{
-			if(valorCredito >= this.valorCadastroLimite){
-				this.valorLimite11 = this.valorCadastroLimite;
-				super.credito(valorCredito - this.valorCadastroLimite);
-			}
-			else if(valorCredito < (this.valorCadastroLimite - this.valorLimite11))
-			{
-				this.valorLimite11 +=  valorCredito;
-					
-			}
-			else {
-				double diferenca;
-				diferenca =  valorCredito- (this.valorCadastroLimite - this.valorLimite11);
-				this.valorLimite11 += (this.valorCadastroLimite - this.valorLimite11);
-				super.credito(diferenca);
-			}
-		}
-		else {
-			super.credito(valorCredito);
-		}
-		
-	}
-	
-	
-	
+
 }

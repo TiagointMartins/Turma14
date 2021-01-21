@@ -1,33 +1,27 @@
 package Bancos;
 
-public class ContaPoupanca extends Conta{
+public class ContaPoupanca extends Conta {
+
 	private int dataAniversarioConta;
 
-	//construtores
-	public ContaPoupanca(int numeroConta, String cpf, int dataAniversarioConta) 
-	{
-		super(numeroConta, cpf);
+	public ContaPoupanca(int numConta, String cpfConta, int dataAniversarioConta) {
+		super(numConta, cpfConta);
 		this.dataAniversarioConta = dataAniversarioConta;
 	}
-	
-	//encapsulamento
-	public int getDataAniversarioConta() 
-	{
+
+	public int getDataAniversarioConta() {
 		return dataAniversarioConta;
 	}
 
-	public void comparacaoData(int data) 
-	{
-		if(this.dataAniversarioConta == data) 
-		{
-    	  	System.out.println("\nHoje é seu aniversário de conta e seu saldo recebeu um acrescimo!");
-    	  	this.saldo = this.saldo*1.005;
-    	  	System.out.printf("\nSALDO ATUAL R$%.2f \n",this.saldo);
-    	  }
-    		else
-    		{
-    			System.out.println("Que pena! hoje não é sua data aniversário...");
-    		}
+	public void setDataAniversarioConta(int dataAniversarioConta) {
+		this.dataAniversarioConta = dataAniversarioConta;
 	}
-	
+
+	public void correcaoPoupanca(int dataAtual) {
+
+		if (dataAtual == this.dataAniversarioConta) {
+			super.depositar((super.getSaldoConta() * 0.005));
+			System.out.println("Parabéns, seu saldo foi incrementado em 0.5%.");
+		}
+	}
 }
