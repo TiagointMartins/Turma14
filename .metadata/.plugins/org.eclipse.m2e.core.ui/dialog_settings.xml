@@ -2,13 +2,21 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Acer\Desktop\blogPessoal - Copia\BlogPessoal"/>
+			<item value="C:\Users\Acer\Desktop\Back-end\BlogPessoal"/>
+			<item value="C:\Users\Acer\Desktop\Back-end\VIT\VIT"/>
+			<item value="C:\Users\Acer\Desktop\Back-end\VIT"/>
+			<item value="C:\Users\Acer\Desktop\Back-end\lojaGames"/>
+			<item value="C:\Users\Acer\Desktop\projeto-integrador\projeto-integrador\VIT\VIT"/>
+			<item value="C:\Users\Acer\Desktop\Back-end\Farmacia"/>
+			<item value="C:\Users\Acer\Desktop\lojaGames"/>
+			<item value="C:\Users\Acer\Desktop\Database-activity\Farmacia"/>
 			<item value="C:\Users\Acer\Desktop\blogPessoal"/>
+			<item value="C:\Users\Acer\Desktop\blogPessoal backup"/>
+			<item value="C:\Users\Acer\Desktop\blogPessoal\src"/>
+			<item value="C:\Users\Acer\Desktop\blogPessoal - Copia\target"/>
 			<item value="C:\Users\Acer\Desktop\BlogPessoal\blogPessoal"/>
 			<item value="C:\Users\Acer\Desktop\BlogPessoal\blog"/>
-			<item value="C:\Users\Acer\Desktop\BlogPessoal\blog\blog"/>
-			<item value="C:\Users\Acer\Desktop\exemplo.gradle"/>
-			<item value="C:\Users\Acer\Desktop\exemplo.maven"/>
-			<item value="C:\Users\Acer\Desktop\hello"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
